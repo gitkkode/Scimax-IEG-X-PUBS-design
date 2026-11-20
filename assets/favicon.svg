@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="250" y1="0" x2="250" y2="500" id="a" spreadMethod="pad" gradientTransform="matrix(-.00374 -1 .8629 -.00322 34.039 501.584)">
+      <stop offset="0" stop-color="color(srgb-linear .863 .072 .054)"/>
+      <stop offset="1" stop-color="color(srgb-linear .956 .468 .082)"/>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="250" y1="122.878" x2="250" y2="377.122" id="b" gradientTransform="matrix(.0072 -.99997 .85276 .00614 34.231 498.46)">
+      <stop offset="0" stop-color="color(srgb-linear .871 .091 .07)"/>
+      <stop offset="1" stop-color="color(srgb-linear .956 .474 .087)"/>
+    </linearGradient>
+  </defs>
+  <g pointer-events="none">
+    <path d="m250 8.234 210.118 120.883v241.766L250 491.766 39.882 370.883V129.117z" fill="url(#a)"/>
+    <path d="m250 78.033 147.392 85.984v171.967L250 421.967l-147.392-85.983V164.016z" fill="#fff"/>
+    <path d="m250 122.878 109.772 63.561v127.122L250 377.122l-109.772-63.561V186.439z" fill="url(#b)"/>
+    <path d="m250 193.848 48.323 28.076v56.152L250 306.152l-48.323-28.076v-56.152z" fill="#fff"/>
+  </g>
+</svg>

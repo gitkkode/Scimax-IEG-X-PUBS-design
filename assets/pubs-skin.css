@@ -1,0 +1,326 @@
+/* Overrides that make the IEG page use the publications look.
+   Colours/buttons/popups are taken from publications/src/styles.
+   pubs-theme.css handles the IEG theme variables; this covers the rest. */
+
+:root {
+  --sci-color-orange: #d44a15;
+  --sci-color-orange-hover: #b53d0f;
+  --sci-color-navy: #111654;
+  --sci-color-blue: #0f75bc;
+  --sci-color-border: #e2e8f0;
+  --sci-color-text-soft: #94a3b8;
+  --sci-header-gradient: linear-gradient(135deg, #fff7ed 0%, #eff6ff 48%, #f5f3ff 100%);
+  --sci-shadow-float: 0 20px 60px -10px rgba(11, 14, 54, 0.4);
+  --sci-shadow-glow-orange: 0 0 20px rgba(212, 74, 21, 0.3);
+  --sci-scrim: rgba(11, 14, 54, 0.78);
+}
+
+/* page background */
+body {
+  background-color: #f8fafc;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(242, 100, 59, 0.06) 0%, transparent 40%),
+    radial-gradient(circle at 85% 10%, rgba(59, 130, 246, 0.04) 0%, transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(242, 100, 59, 0.03) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+.ambient-bg { background: transparent; }
+
+/* titles */
+.text-heading,
+app-modal .app-modal-title,
+.modal-panel-header h2,
+app-alerts-panel .alerts-panel__header h2,
+app-help-panel .help-panel__title,
+app-delete-confirm-modal .delete-modal-title,
+app-validation-message-modal .validation-modal__title,
+app-approval-details-modal .approval-comment-title {
+  color: var(--sci-color-navy) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.02em;
+}
+
+/* buttons - primary (same as .sci-btn--primary) */
+.btn-gradient,
+app-modal .app-modal-btn--primary,
+app-sidebar .utility-logout-confirm-btn,
+app-header-utility-bar .utility-logout-confirm-btn,
+app-delete-confirm-modal .delete-btn-confirm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 0;
+  padding: 0.55rem 1.15rem !important;
+  border: 1px solid transparent !important;
+  border-radius: 9999px !important;
+  background: var(--sci-color-orange) !important;
+  color: #fff !important;
+  font-size: 11px !important;
+  font-weight: 900 !important;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: var(--sci-shadow-glow-orange) !important;
+  transform: none !important;
+  filter: none !important;
+  transition: background-color 0.12s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.12s;
+}
+.btn-gradient:hover,
+app-modal .app-modal-btn--primary:hover,
+app-sidebar .utility-logout-confirm-btn:hover,
+app-header-utility-bar .utility-logout-confirm-btn:hover,
+app-delete-confirm-modal .delete-btn-confirm:hover {
+  background: var(--sci-color-orange-hover) !important;
+  transform: none !important;
+}
+.btn-gradient:disabled,
+app-modal .app-modal-btn--primary:disabled { opacity: 0.5; }
+/* delete stays red */
+app-delete-confirm-modal .delete-btn-confirm { background: #dc2626 !important; box-shadow: none !important; }
+app-delete-confirm-modal .delete-btn-confirm:hover { background: #b91c1c !important; }
+
+/* secondary */
+app-modal .app-modal-btn:not(.app-modal-btn--icon):not(.app-modal-btn--primary),
+app-start-approval-modal .start-approval-start-btn,
+app-task-reference-documents-modal .start-approval-start-btn,
+app-alerts-panel .alerts-panel__header button.rounded-full {
+  min-height: 0;
+  padding: 0.55rem 1.15rem !important;
+  border: 1px solid var(--sci-color-border) !important;
+  border-radius: 9999px !important;
+  background: #fff !important;
+  color: var(--sci-color-navy) !important;
+  font-size: 11px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+  transform: none !important;
+}
+app-modal .app-modal-btn:not(.app-modal-btn--icon):not(.app-modal-btn--primary):hover,
+app-start-approval-modal .start-approval-start-btn:hover,
+app-alerts-panel .alerts-panel__header button.rounded-full:hover {
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08) !important;
+  background: #fff !important;
+  color: var(--sci-color-navy) !important;
+}
+
+/* close (X) buttons, matches .sci-close-btn */
+app-modal .app-modal-btn--icon,
+.app-modal-btn--icon,
+app-help-panel .header-close-btn,
+app-alerts-panel .alerts-close-btn,
+app-delete-confirm-modal .delete-modal-close,
+app-approval-details-modal .approval-comment-close {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0;
+  width: 2.25rem !important;
+  height: 2.25rem !important;
+  min-width: 2.25rem !important;
+  min-height: 2.25rem !important;
+  padding: 0 !important;
+  border-radius: 9999px !important;
+  border: 1px solid #e2e8f0 !important;
+  background: #fff !important;
+  color: #94a3b8 !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+  transform: none !important;
+  transition: color 0.12s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.12s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.12s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+/* pubs uses a 14px X icon */
+app-modal .app-modal-btn--icon svg,
+.app-modal-btn--icon svg,
+app-help-panel .header-close-btn svg,
+app-alerts-panel .alerts-close-btn svg,
+app-delete-confirm-modal .delete-modal-close svg,
+app-approval-details-modal .approval-comment-close svg {
+  display: block !important;
+  width: 14px !important;
+  height: 14px !important;
+  min-width: 14px;
+  margin: 0 !important;
+  pointer-events: none;
+}
+app-modal .app-modal-btn--icon svg path,
+.app-modal-btn--icon svg path,
+app-help-panel .header-close-btn svg path,
+app-alerts-panel .alerts-close-btn svg path,
+app-delete-confirm-modal .delete-modal-close svg path,
+app-approval-details-modal .approval-comment-close svg path { stroke-width: 2.5; }
+app-modal .app-modal-btn--icon:hover,
+.app-modal-btn--icon:hover,
+app-help-panel .header-close-btn:hover,
+app-alerts-panel .alerts-close-btn:hover,
+app-delete-confirm-modal .delete-modal-close:hover,
+app-approval-details-modal .approval-comment-close:hover {
+  color: #111654 !important;
+  border-color: #cbd5e1 !important;
+  background: #fff !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08) !important;
+}
+app-modal .app-modal-btn--icon:focus-visible,
+.app-modal-btn--icon:focus-visible,
+app-help-panel .header-close-btn:focus-visible,
+app-alerts-panel .alerts-close-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(15, 117, 188, 0.12) !important;
+}
+
+/* popups - backdrop */
+app-modal .app-modal-backdrop,
+.modal-overlay,
+app-alerts-panel .alerts-panel-backdrop,
+app-help-panel .help-panel-backdrop,
+app-delete-confirm-modal .delete-modal-overlay,
+app-approval-details-modal .approval-comment-backdrop {
+  background: var(--sci-scrim) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+app-modal .app-modal-overlay--stacked .app-modal-backdrop { background: rgba(15, 23, 42, 0.42) !important; }
+
+/* popup panel */
+app-modal .app-modal-panel,
+.modal-panel,
+app-help-panel .help-panel,
+app-alerts-panel .alerts-panel,
+app-delete-confirm-modal .delete-modal-card,
+app-approval-details-modal .approval-comment-popup {
+  background: #fff !important;
+  border: 1px solid var(--sci-color-border) !important;
+  box-shadow: var(--sci-shadow-float) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+app-modal .app-modal-panel--in { box-shadow: var(--sci-shadow-float) !important; }
+@media (min-width: 768px) {
+  app-modal .app-modal-panel,
+  .modal-panel,
+  app-help-panel .help-panel,
+  app-alerts-panel .alerts-panel,
+  app-delete-confirm-modal .delete-modal-card { border-radius: 32px !important; }
+  app-approval-details-modal .approval-comment-popup { border-radius: 24px !important; }
+}
+/* notifications panel */
+app-alerts-panel .alerts-panel { background: #fafbfc !important; }
+app-alerts-panel .alerts-panel-overlay { padding: 1rem; }
+
+/* popup header gradient + glow */
+app-modal .app-modal-header,
+.modal-panel-header,
+app-alerts-panel .alerts-panel__header,
+app-help-panel .help-panel__header,
+app-delete-confirm-modal .delete-modal-header,
+app-approval-details-modal .approval-comment-header {
+  position: relative;
+  overflow: hidden;
+  background: var(--sci-header-gradient) !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.85) !important;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+app-modal .app-modal-header::before,
+.modal-panel-header::before,
+app-alerts-panel .alerts-panel__header::before,
+app-help-panel .help-panel__header::before,
+app-delete-confirm-modal .delete-modal-header::before {
+  content: '';
+  position: absolute;
+  top: -140px;
+  right: -90px;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle at center, rgba(242, 100, 59, 0.16) 0%, rgba(255, 237, 228, 0.1) 32%, rgba(255, 255, 255, 0) 72%);
+}
+app-modal .app-modal-header > *,
+.modal-panel-header > *,
+app-alerts-panel .alerts-panel__header > *,
+app-help-panel .help-panel__header > *,
+app-delete-confirm-modal .delete-modal-header > * { position: relative; z-index: 1; }
+
+app-modal .app-modal-body { background: #fff !important; }
+.modal-scroll-body { background: #fafbfc !important; }
+
+/* status badges */
+app-status-badge > span,
+app-setup-review-modal .setup-status-badge {
+  border-radius: 9999px !important;
+  padding: 0.3rem 0.75rem !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  box-shadow: none !important;
+}
+.pubs-chip--info    { background: #eff6ff !important; border-color: #93c5fd !important; color: #1d4ed8 !important; }
+.pubs-chip--success { background: #dcfce7 !important; border-color: #86efac !important; color: #15803d !important; }
+.pubs-chip--warning { background: #fef3c7 !important; border-color: #fcd34d !important; color: #b45309 !important; }
+.pubs-chip--danger  { background: #fef2f2 !important; border-color: #fca5a5 !important; color: #b91c1c !important; }
+.pubs-chip--neutral { background: #f1f5f9 !important; border-color: #e2e8f0 !important; color: #1e293b !important; }
+.pubs-chip--brand   { background: #ffedd5 !important; border-color: #fdba74 !important; color: #c2410c !important; }
+
+/* field labels */
+app-setup-review-modal .edit-approval-label,
+app-approval-details-modal .approval-section-title,
+app-setup-review-modal .edit-approval-section-title,
+app-help-panel .help-panel__section-label {
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #94a3b8 !important;
+}
+
+/* inputs */
+app-setup-review-modal .edit-approval-input,
+app-setup-review-modal .edit-approval-textarea,
+app-select-control .select-control-trigger,
+app-ui-datepicker .ui-datepicker__trigger {
+  border-radius: 0.75rem !important;
+  border: 1px solid #e2e8f0 !important;
+  background: #f8fafc !important;
+  color: var(--sci-color-navy) !important;
+  font-weight: 700 !important;
+}
+app-setup-review-modal .edit-approval-input:focus,
+app-setup-review-modal .edit-approval-textarea:focus,
+app-select-control .select-control-open .select-control-trigger,
+app-ui-datepicker .ui-datepicker--open .ui-datepicker__trigger {
+  border-color: var(--sci-color-blue) !important;
+  box-shadow: 0 0 0 4px rgba(15, 117, 188, 0.12) !important;
+  background: #fff !important;
+}
+app-setup-review-modal .edit-approval-input-readonly { background: #f1f5f9 !important; color: #64748b !important; }
+
+/* toasts */
+app-toast .toast {
+  border-radius: 1rem !important;
+  border: 1px solid #f1f5f9 !important;
+  border-left-width: 1px !important;
+  background: #fff !important;
+  box-shadow: var(--sci-shadow-float) !important;
+  backdrop-filter: none !important;
+}
+app-toast .toast.border-l-emerald-500 { border-color: #a7f3d0 !important; }
+app-toast .toast.border-l-amber-500 { border-color: #fde68a !important; }
+app-toast .toast.border-l-red-500 { border-color: #fecaca !important; }
+app-toast .toast.border-l-primary-500 { border-color: #bfdbfe !important; }
+app-toast .toast h4 { color: var(--sci-color-navy); }
+
+/* table header */
+.applications-table .table-header-cell { color: #94a3b8 !important; font-size: 10px !important; letter-spacing: 0.1em !important; }
+
+/* misc */
+app-my-tasks .tasks-page-subtitle { color: #64748b; font-weight: 600; }
+app-sidebar .sidebar-brand-svg { filter: none; }
+[hidden] { display: none !important; }
+
+/* these are block elements in the real app */
+app-ui-datepicker, app-select-control, app-application-tabs { display: block; width: 100%; min-width: 0; }
+app-ui-datepicker .ui-datepicker, app-ui-datepicker .ui-datepicker__control, app-ui-datepicker .ui-datepicker__trigger { width: 100%; }
