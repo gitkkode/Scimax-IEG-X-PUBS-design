@@ -16,6 +16,15 @@
   const ROLES = [{ id: 'owner', label: 'Owner' }, { id: 'contributor', label: 'Contributor' }];
   const FILTERS = [{ id: 'open', label: 'Open' }, { id: 'closed', label: 'Closed' }, { id: 'cancelled', label: 'Cancelled' }];
   const PEOPLE = ['Dr. Rohit Verma', 'Dr. Priya Iyer', 'Dr. Robert Kim', 'Dr. Lisa Patel', 'Dr. Elena Vasquez', 'Dr. Arjun Mehta', 'Dr. Kavita Reddy'];
+  // initials avatar, same colour pick as sci-user-avatar in publications
+  const AVATAR_TONES = ['#dbeafe:#1d4ed8', '#d1fae5:#047857', '#fef3c7:#b45309', '#e0e7ff:#4338ca', '#ede9fe:#6d28d9', '#ffe4e6:#be123c', '#cffafe:#0e7490', '#ffedd5:#c2410c'];
+  const avatar = (name) => {
+    const n = name.replace(/^Dr\.\s*/, '');
+    let h = 0; for (let i = 0; i < n.length; i++) h = n.charCodeAt(i) + ((h << 5) - h);
+    const [bg, fg] = AVATAR_TONES[Math.abs(h) % AVATAR_TONES.length].split(':');
+    const ini = n.split(/\s+/).map((p) => p[0]).slice(0, 2).join('').toUpperCase();
+    return `<span class="participant-avatar" style="background:${bg};color:${fg}" aria-hidden="true">${ini}</span>`;
+  };
   const mail = (n) => n.replace(/^Dr\.\s*/, '').toLowerCase().replace(/\s+/g, '.') + '@demo-org.com';
   let seq = 0;
   const T = (program, role, code, title, type, app, end, status, myStatus = '', grantType = '', extra = {}) => ({
@@ -422,7 +431,7 @@
           <div class="edit-approval-section-heading"><h3 class="edit-approval-section-title">${people}<span class="edit-approval-required">*</span></h3>${locked ? '' : iconBtn('setup-approval-doc-icon-btn--approver', `Add ${people.slice(0, -1).toLowerCase()}`, '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M19 8v6"></path><path d="M22 11h-6"></path>')}</div>
           <div class="setup-schedule-table-wrap glass-panel applications-table-panel rounded-2xl"><table class="setup-schedule-table w-full text-left text-sm whitespace-nowrap">
             <thead class="border-b border-white/50"><tr><th class="setup-schedule-th px-4 py-3 font-bold text-slate-500 text-xs uppercase tracking-wider"><span class="setup-schedule-th__label">User Name</span></th><th class="setup-schedule-th setup-schedule-th-status px-4 py-3 font-bold text-slate-500 text-xs uppercase tracking-wider"><span class="setup-schedule-th__label">Status</span></th></tr></thead>
-            <tbody>${draft.users.map((u) => `<tr><td class="setup-schedule-td px-4 py-3.5"><div class="setup-participant-cell"><span class="setup-participant-name">${esc(u.name)}</span><span class="setup-table-mail-btn" title="${esc(mail(u.name))}" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></span></div></td>
+            <tbody>${draft.users.map((u) => `<tr><td class="setup-schedule-td px-4 py-3.5"><div class="setup-participant-cell">${avatar(u.name)}<div class="setup-participant-text"><span class="setup-participant-name">${esc(u.name)}</span><a class="setup-participant-mail" href="mailto:${esc(mail(u.name))}" title="Email ${esc(u.name)}">${esc(mail(u.name))}</a></div></div></td>
               <td class="setup-schedule-td setup-schedule-td-status px-4 py-3.5"><div class="setup-review-status-cell"><span class="setup-status-badge pubs-chip--${badgeCode(u.status)}">${esc(u.status)}</span>${locked || u.status !== 'Planned' ? '' : `<button type="button" class="setup-table-delete-btn cursor-pointer" aria-label="Remove ${esc(u.name)}" data-remove-user="${esc(u.name)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></button>`}</div></td></tr>`).join('') ||
               `<tr class="setup-schedule-table__empty-row"><td class="setup-schedule-td setup-schedule-table__empty-cell" colspan="2"><div class="setup-schedule-table__empty"><p class="setup-schedule-table__empty-title">No ${people.toLowerCase()} added</p></div></td></tr>`}</tbody>
           </table></div>

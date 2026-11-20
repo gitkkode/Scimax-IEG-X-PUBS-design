@@ -324,3 +324,20 @@ app-sidebar .sidebar-brand-svg { filter: none; }
 /* these are block elements in the real app */
 app-ui-datepicker, app-select-control, app-application-tabs { display: block; width: 100%; min-width: 0; }
 app-ui-datepicker .ui-datepicker, app-ui-datepicker .ui-datepicker__control, app-ui-datepicker .ui-datepicker__trigger { width: 100%; }
+
+/* approvers / reviewers list in the setup popup: avatar, name, email on one row */
+app-setup-review-modal .setup-participant-cell { flex-direction: row; align-items: center; gap: 0.75rem; }
+app-setup-review-modal .setup-participant-text { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
+app-setup-review-modal .setup-participant-name { color: #111654; font-weight: 800; }
+app-setup-review-modal .setup-participant-mail {
+  font-size: 0.75rem; font-weight: 600; color: #94a3b8; text-decoration: none;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+app-setup-review-modal .setup-participant-mail:hover { color: #0f75bc; text-decoration: underline; }
+.participant-avatar {
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+  width: 2.25rem; height: 2.25rem; border-radius: 9999px; border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.1); font-size: 0.75rem; font-weight: 900; letter-spacing: 0.02em;
+}
+app-setup-review-modal .setup-schedule-td-status { vertical-align: middle; }
+app-setup-review-modal .setup-schedule-table tbody tr:hover .setup-schedule-td { background: #fff7ed; }
